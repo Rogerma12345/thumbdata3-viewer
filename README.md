@@ -19,7 +19,7 @@ docs/              发布目录
 
 ```text
 https://Rogerma12345.github.io/thumbdata3-viewer/
-````
+```
 
 主要功能如下：
 1. 读取 `thumbdata` 类文件。
