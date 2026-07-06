@@ -14,7 +14,8 @@ module.exports = {
 
   plugins: [
     new webpack.ProvidePlugin({
-      process: "process/browser"
+      process: "process/browser",
+      Buffer: ["buffer", "Buffer"]
     }),
 
     new HtmlWebpackPlugin({
@@ -45,7 +46,7 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".css"],
     fallback: {
-      buffer: false,
+      buffer: require.resolve("buffer/"),
       process: require.resolve("process/browser")
     }
   },
