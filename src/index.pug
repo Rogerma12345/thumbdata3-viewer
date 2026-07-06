@@ -40,10 +40,10 @@ html
             .progress-bar.progress-bar-striped.progress-bar-animated
           input.d-none#filePicker(type="file")
           .download-zip
+            button.btn.btn-warning.btn-lg.d-none#zipBtn(type="button", title="将全部图片下载为 zip 压缩包")
+              i.fas.fa-file-archive
+              |  下载全部
             a.d-none.zip-download
-              button.btn.btn-warning.btn-lg.d-none#zipBtn(type="button", title="将全部图片下载为 zip 压缩包")
-                i.fas.fa-file-archive
-                |  下载全部
             strong.progress-text.d-none
 
       .row.justify-content-md-center#imageContainer
