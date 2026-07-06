@@ -77,7 +77,7 @@ class ImageViewer {
 		imageChild.classList.remove("d-none");
 
 		imagePreview.addEventListener("error", () => {
-			console.error("Failed to load image");
+			console.error("图片加载失败");
 			URL.revokeObjectURL(image.url);
 			this.images.splice(this.images.findIndex(({ url }) => image.url === url), 1);
 			requestAnimationFrame(() => this.renderPage());
@@ -115,10 +115,10 @@ class ImageViewer {
 		this.mainImage.src = imageURL;
 		this.mainImageDownload.href = imageURL;
 		this.mainImageDownload.download = downloadURL;
-		this.mainImageDownload.title = "Download " + downloadURL;
+		this.mainImageDownload.title = "下载 " + downloadURL;
 		this.imageViewer.classList.remove("d-none");
 		this.mainBrowser.classList.add("d-none");
-		this.imageDescription.textContent = `Image ${index + 1} of ${this.images.length}`;
+		this.imageDescription.textContent = `图片 ${index + 1} of ${this.images.length}`;
 
 		this.currentIndex = index;
 
@@ -168,7 +168,7 @@ class ImageViewer {
 			archive.file((i + 1) + ".jpg", image.buffer);
 		}
 		return archive.generateAsync({ type: "blob" }, ({ percent }: { percent: number }) => {
-			this.progressText.textContent = "Zipping " + percent.toFixed(0) + "%";
+			this.progressText.textContent = "正在压缩 " + percent.toFixed(0) + "%";
 		})
 			.then((blob: Blob) => {
 				this.progressText.classList.add("d-none");
@@ -220,12 +220,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
 		try {
 			if (location.protocol === "file:") throw "Nope";
-			console.log("Thumbdata3Viewer: Loading thumbparser as Worker")
+			console.log("Thumbdata3Viewer: 以 Worker 方式加载解析器")
 
 			worker = new Worker("worker.js");
 			sendMessage = (message: any) => (worker as any as Worker).postMessage(message);
 		} catch (e) {
-			console.log("Thumbdata3Viewer: Unable to load parser as worker, loading as script instead");
+			console.log("Thumbdata3Viewer: 无法以 Worker 方式加载解析器，改用脚本方式加载");
 
 			let script = document.createElement("script");
 			script.setAttribute("src", "worker.js");
@@ -245,7 +245,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		DOM.progressText.classList.remove("d-none");
 		DOM.progressContainer.classList.remove("d-none");
 		DOM.progress.style.width = "0%";
-		DOM.progress.textContent = "Parsing..";
+		DOM.progress.textContent = "解析中...";
 		DOM.fileOpen.classList.add("d-none");
 
 		imageViewer.clear()

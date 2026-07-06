@@ -1,66 +1,67 @@
 doctype html
 html
-	head
-		title Thumbdata3 Viewer - Online JPEG extractor
-		link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css", integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB", crossorigin="anonymous")
-		link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.0.12/css/all.css", integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9", crossorigin="anonymous", async)
-		link(rel="canonical", href="https://x0a.github.io/thumbdata3-viewer/")
-		meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
-		meta(name="description", content="Fully client-side HTML5 JPEG extractor. Uses JPEG magic numbers in files to extract JPEGs from any non-encrypted file.")
-		meta(name="keywords", content="thumbdata3,thumbdata4,thumbdata5,thumbdata6,online,extract,export")
-		meta(charset="utf-8")
-		template#imageTemplate
-			.col-md-3.d-none
-				.image-item.card
-					img.card-img-top
-	body
-		header
-			.navbar.navbar-dark.bg-dark
-				.container
-					span.navbar-brand HTML5 Thumbdata3 Viewer
-					ul.navbar-nav.mr-auto
-						li.nav-item
-							a.nav-link(href="https://github.com/x0a/thumbdata3-viewer/tree/master/src")
-								i.fab.fa-github
-								|  Source
-		.container.main-browser
-			.jumbotron
-				h1.display-3 Thumbdata3 Viewer
-				.lead Embedded JPEG extractor
-				.my-4 This is a fully client-side JPEG extractor.
-					|  It works by finding JPEG-markers in files, and can theoretically be used to extract JPEGs from any non-encrypted file, including other JPEGs.
-				
-				.lead.d-flex.justify-content-between
-					button.btn.btn-primary.btn-lg#filePickerBtn(type="button") 
-						i.far.fa-folder-open
-						|  Select file
-					.progress.d-none.flex-grow-1
-						.progress-bar.progress-bar-striped.progress-bar-animated
-						
-					input.d-none#filePicker(type="file")
-					.download-zip
-						a.d-none.zip-download
-						button.btn.btn-warning.btn-lg.d-none#zipBtn(type="button", title="Download all images as zip archive")
-							i.fas.fa-file-archive
-							|  Download all
-				
-				strong.progress-text.d-none
-			.row.justify-content-md-center#imageContainer
-				.col-md-4#emptyText.text-center
-					h3.text-muted No images.
-		.image-viewer.d-none
-			.image-viewer-options
-				button.btn.btn-secondary.d-inline-block.mr-1#closeButton(type="button")
-					i.fas.fa-arrow-circle-left
-					|  Back
-				.image-description
-					| Image 1 of 1
-				.image-viewer-nav
-					button.btn.btn-outline-info.d-inline-block.mr-1#prevButton(type="button" disabled="true", title="Previous image")
-						i.fas.fa-chevron-left
-					button.btn.btn-outline-info.d-inline-block#nextButton(type="button", disabled="true", title="Next image") 
-						i.fas.fa-chevron-right
-			.image-viewer-main
-				a#imageDownload(title="Download image")
-					img(src="")
+  head
+    title Thumbdata3 查看器 - 在线 JPEG 提取器
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css", integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj7jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB", crossorigin="anonymous")
+    link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.0.12/css/all.css", integrity="sha384-G0fIWAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9", crossorigin="anonymous", async)
+    link(rel="canonical", href="https://Rogerma12345.github.io/thumbdata3-viewer/")
+    meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    meta(name="description", content="完全在浏览器端运行的 HTML5 JPEG 提取器。工具会查找文件中的 JPEG 标记，并从未加密文件中提取 JPEG 图片。")
+    meta(name="keywords", content="thumbdata3,thumbdata4,thumbdata5,thumbdata6,online,extract,export,JPEG,缩略图,提取")
+    meta(charset="utf-8")
 
+    template#imageTemplate
+      .col-md-3.d-none
+        .image-item.card
+          img.card-img-top
+
+  body
+    header
+      .navbar.navbar-dark.bg-dark
+        .container
+          span.navbar-brand HTML5 Thumbdata3 查看器
+          ul.navbar-nav.mr-auto
+            li.nav-item
+              a.nav-link(href="https://github.com/Rogerma12345/thumbdata3-viewer/tree/master/src")
+                i.fab.fa-github
+                |  源码
+
+    .container.main-browser
+      .jumbotron
+        h1.display-3 Thumbdata3 查看器
+        .lead 嵌入式 JPEG 提取器
+        .my-4
+          | 本工具完全在浏览器端运行。工具会查找文件中的 JPEG 标记，并从未加密文件中提取 JPEG 图片，包括其他 JPEG 文件。
+        .lead.d-flex.justify-content-between
+          button.btn.btn-primary.btn-lg#filePickerBtn(type="button")
+            i.far.fa-folder-open
+            |  选择文件
+          .progress.d-none.flex-grow-1
+            .progress-bar.progress-bar-striped.progress-bar-animated
+          input.d-none#filePicker(type="file")
+          .download-zip
+            a.d-none.zip-download
+              button.btn.btn-warning.btn-lg.d-none#zipBtn(type="button", title="将全部图片下载为 zip 压缩包")
+                i.fas.fa-file-archive
+                |  下载全部
+            strong.progress-text.d-none
+
+      .row.justify-content-md-center#imageContainer
+        .col-md-4#emptyText.text-center
+          h3.text-muted 暂无图片
+
+    .image-viewer.d-none
+      .image-viewer-options
+        button.btn.btn-secondary.d-inline-block.mr-1#closeButton(type="button")
+          i.fas.fa-arrow-circle-left
+          |  返回
+        .image-description 图片 1 / 1
+        .image-viewer-nav
+          button.btn.btn-outline-info.d-inline-block.mr-1#prevButton(type="button", disabled="true", title="上一张图片")
+            i.fas.fa-chevron-left
+          button.btn.btn-outline-info.d-inline-block#nextButton(type="button", disabled="true", title="下一张图片")
+            i.fas.fa-chevron-right
+
+      .image-viewer-main
+        a#imageDownload(title="下载图片")
+          img(src="")

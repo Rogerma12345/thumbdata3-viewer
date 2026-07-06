@@ -83,7 +83,7 @@ onMessage((event, sendResponse) => {
         const progress = (position / total) * 100;
         const text = file
             ? (position / 1024).toFixed(0) + " kB / " + (total / 1024).toFixed(0) + " kB"
-            : "Image " + position + " / " + total;
+            : "图片 " + position + " / " + total;
         const time = Date.now();
 
         if (time - lastUpdate > 200) {
@@ -92,11 +92,11 @@ onMessage((event, sendResponse) => {
         }
     }
 
-    sendResponse({ status: "Parsing" })
+    sendResponse({ status: "解析中" })
     
     stream = new FileStream(file, (position, total) => onProgress(position, total, true))
         .pipe(new ThumbReader(fileSegments => {
-            sendResponse({ status: "Extracting.." })
+            sendResponse({ status: "提取中..." })
             stream = new FileStream(file, (position, total) => onProgress(position, total), fileSegments)
                 .pipe(new SliceCollector(images => sendResponse({ images: images })))
         }))

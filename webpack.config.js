@@ -1,21 +1,29 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const TerserPlugin = require("terser-webpack-plugin");
+const webpack = require("webpack");
 
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   entry: {
-    "index": "./src/index.ts",
-    "worker": "./src/worker.ts"
+    index: "./src/index.ts",
+    worker: "./src/worker.ts"
   },
+
   mode: "production",
+
   plugins: [
+    new webpack.ProvidePlugin({
+      process: "process/browser"
+    }),
+
     new HtmlWebpackPlugin({
       template: "./src/index.pug",
       filename: "index.html",
       excludeChunks: ["worker"]
-    }),
+    })
   ],
+
   module: {
     rules: [
       {
@@ -29,23 +37,34 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
-      },
+        use: ["style-loader", "css-loader"]
+      }
     ]
   },
+
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".css"],
-    fallback: {"buffer": false}
+    fallback: {
+      buffer: false,
+      process: require.resolve("process/browser")
+    }
   },
+
   optimization: {
     minimize: true,
     minimizer: [
       new TerserPlugin({
-        extractComments: false,
-      }),
-    ],
+        extractComments: false
+      })
+    ]
   },
+
   output: {
-    path: path.resolve(__dirname, "dist"),
-  },
+    path: path.resolve(__dirname, "docs"),
+    filename: "[name].js",
+    publicPath: "./",
+    clean: {
+      keep: /^(?:\.nojekyll|CNAME)$/
+    }
+  }
 };
